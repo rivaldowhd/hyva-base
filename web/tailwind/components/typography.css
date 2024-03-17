@@ -1,0 +1,41 @@
+@layer utilities {
+    /* This class only exists for backwards compatibility, */
+    /* The default is applied in tailwind.config.js since Hyvä 1.2.0 */
+    .text-sans-serif {
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    }
+}
+
+@layer base {
+    html {
+        @apply antialiased;
+    }
+
+    body {
+        @apply text-black leading-normal text-base tracking-normal;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-medium mb-1 md:mb-2 xl:mb-3;
+    }
+
+    h1 {
+        @apply text-xl md:text-2xl xl:text-3xl 2xl:text-4xl;
+    }
+
+    h2 {
+        @apply text-lg md:text-xl xl:text-2xl 2xl:text-3xl;
+    }
+
+    h3 {
+        @apply text-base md:text-lg xl:text-xl 2xl:text-2xl;
+    }
+
+    h4 {
+        @apply text-sm md:text-base xl:text-lg 2xl:text-xl;
+    }
+
+    p {
+        @apply font-light mb-3 text-xs md:text-sm 2xl:text-base;
+    }
+}

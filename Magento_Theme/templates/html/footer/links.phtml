@@ -1,0 +1,99 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Hyva\Theme\Model\ViewModelRegistry;
+use Hyva\Theme\ViewModel\Customer;
+use Hyva\Theme\ViewModel\StoreConfig;
+use Hyva\Theme\ViewModel\HeroiconsOutline;
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+
+/** @var Template $block */
+/** @var Escaper $escaper */
+/** @var ViewModelRegistry $viewModels */
+
+/** @var Customer $customer */
+$customer = $viewModels->require(Customer::class);
+/** @var StoreConfig $storeConfig */
+$storeConfig = $viewModels->require(StoreConfig::class);
+/** @var HeroiconsOutline $heroicons */
+$heroicons = $viewModels->require(HeroiconsOutline::class);
+?>
+<div class=" w-full flex flex-wrap pr-4">
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 gap-8 lg:grid-cols-4">
+        <div>
+            <h3 class="text-md leading-5 font-semibold tracking-wider">
+                Need Help?
+            </h3>
+            <ul class="mt-4">
+                <li class="text-left">
+                    <a href="tel:<?= $storeConfig->getStoreConfig('general/store_information/phone'); ?>"
+                       class="text-base text-center leading-6 border border-solid border-current rounded-full p-2 w-52 inline-block">
+                        <?= $storeConfig->getStoreConfig('general/store_information/phone'); ?>
+                    </a>
+                </li>
+                <li class="mt-4">
+                    <a href="<?= $escaper->escapeUrl($block->getUrl('contact')) ?>"
+                       class="text-base text-center leading-6 border border-solid border-current rounded-full p-2 w-52 inline-block">
+                        <?= $escaper->escapeHtml(__('Ask a Question')) ?>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-md leading-5 font-semibold tracking-wider">
+                Shipping & Delivery
+            </h3>
+            <div>Estimated Delivery Date </div>
+            <ul class="mt-4 ml-4">
+                <li class="mt-4 list-disc">
+                    <a href="#" class="text-base leading-6">
+                        Standard (Tue, Mar 26)
+                    </a>
+                </li>
+                <li class="mt-4 list-disc">
+                    <a href="#" class="text-base leading-6">
+                        Express (Mon, Mar 18)
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-md leading-5 font-semibold tracking-wider">
+                Resources
+            </h3>
+            <ul class="mt-4">
+                <?php if ($storeConfig->getStoreConfig('catalog/seo/search_terms')): ?>
+                    <li class="mt-4">
+                        <a href="<?= $escaper->escapeUrl($block->getUrl('search/term/popular')) ?>"
+                           class="text-base leading-6">
+                            <?= $escaper->escapeHtml(__('Search Terms')) ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+        <div>
+            <h3 class="text-md leading-5 font-semibold tracking-wider">
+                About Us
+            </h3>
+            <ul class="mt-4">
+                <?php if ($storeConfig->getStoreConfig('catalog/seo/search_terms')): ?>
+                    <li class="mt-4">
+                        <a href="<?= $escaper->escapeUrl($block->getUrl('search/term/popular')) ?>"
+                           class="text-base leading-6">
+                            <?= $escaper->escapeHtml(__('Search Terms')) ?>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </div>
+    </div>
+</div>

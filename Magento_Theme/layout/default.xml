@@ -6,9 +6,5 @@
                 <argument name="logo_height" xsi:type="number">27</argument>
             </arguments>
         </referenceBlock>
-        <referenceBlock name="store-switcher" remove="true" />
-        <referenceBlock name="store-language-switcher" remove="true" />
-        <referenceBlock name="currency-switcher" remove="true" />
-        <referenceBlock name="form.subscribe" remove="true" />
     </body>
 </page>

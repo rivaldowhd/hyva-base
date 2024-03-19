@@ -1,0 +1,84 @@
+<?php
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+
+declare(strict_types=1);
+
+use Magento\Catalog\Block\Product\View as ProductView;
+use Magento\Framework\Escaper;
+
+/** @var Escaper $escaper */
+/** @var ProductView $block */
+
+$product = $block->getProduct();
+?>
+<?php if ($product->isSaleable() && $block->hasOptions()): ?>
+<div id="bundleSummary"
+     class="block-bundle-summary">
+    <div class="content">
+        <div class="bundle-info">
+            <div class="product-details">
+
+                <?= $block->getChildHtml('product.info.form') ?>
+
+
+                <?php if ($product->isSaleable()): ?>
+                    <?= $block->getChildHtml("product.info.bundle.price") ?>
+                <div class="flex items-center my-4 sm:mt-0 gap-3">
+                    <?= $block->getChildHtml("product.info.quantity") ?>
+                    <?= $block->getChildHtml("product.info.addtocart") ?>
+                </div>
+                <div class="flex">
+                    <?= $block->getChildHtml("addtocart.shortcut.buttons") ?>
+                </div>
+                <?php endif; ?>
+
+            </div>
+
+            <div class="tier-price-container">
+                <?= $block->getChildHtml("product.price.tier") ?>
+            </div>
+
+        </div>
+        <div x-data="initBundleSummary()"
+             x-bind="eventListeners"
+             class="bundle-summary hidden"
+        >
+            <div x-show="selectedOptions.length">
+                <div class="mb-2 w-full text-2xl leading-relaxed text-left text-gray-900 border-b subtitle title-font
+                            font-base border-container">
+                    <?= $escaper->escapeHtml(__('Summary')) ?>
+                </div>
+                <div>
+                    <ul class="bundle items">
+                        <template x-for="option in selectedOptions">
+                        <li class="mb-2" x-show="option.products.length">
+                            <span class="text-base font-semibold" x-html="option.label"></span>
+                            <template x-for="product in option.products">
+                                <div><span x-html="product.qty"></span> x <span x-html="product.name"></span></div>
+                            </template>
+                        </li>
+                    </template>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script>
+            function initBundleSummary() {
+                return {
+                    selectedOptions: [],
+                    eventListeners: {
+                        ['@update-bundle-option-selection.window'](event) {
+                            this.selectedOptions = event.detail;
+                        }
+                    }
+                }
+            }
+        </script>
+    </div>
+</div>
+<?php endif; ?>

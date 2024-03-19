@@ -17,10 +17,12 @@ use Magento\Framework\Escaper;
 
 ?>
 <?php if ($crumbs && is_array($crumbs)): ?>
-<nav class="breadcrumbs bg-container-lighter shadow-sm" aria-label="Breadcrumb">
+<nav class="breadcrumbs bg-container-lighter shadow-sm hidden lg:block" aria-label="Breadcrumb">
     <div class="container">
         <ol class="items list-reset py-4 rounded flex flex-wrap text-grey text-sm">
             <?php foreach ($crumbs as $crumbName => $crumbInfo): ?>
+                <?php if ($crumbName == 'product') continue; ?>
+
                 <li class="item flex <?= $escaper->escapeHtmlAttr($crumbName) ?>">
                 <?php if (!$crumbInfo['first']): ?>
                     <span aria-hidden="true" class="separator text-primary-lighter px-2">/</span>

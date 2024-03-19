@@ -33,6 +33,8 @@ $logoPathResolver = $block->getData('logoPathResolver');
 $logoSrc = $logoPathResolver && method_exists($logoPathResolver, 'getLogoSrc')
     ? $logoPathResolver->getLogoSrc($block->getData('logo_file'))
     : $block->getLogoSrc();
+
+$logoSrcMobile = $block->getData('logoSrcMobile') ? $block->getViewFileUrl($block->getData('logoSrcMobile')) : '';
 ?>
 <div class="order-2 lg:order-1 w-auto flex-shrink">
     <a
@@ -41,7 +43,10 @@ $logoSrc = $logoPathResolver && method_exists($logoPathResolver, 'getLogoSrc')
         href="<?= $escaper->escapeUrl($block->getUrl('')) ?>"
         aria-label="<?= $escaper->escapeHtmlAttr(__('Go to Home page')) ?>"
     >
-        <img
+        <?php if($logoSrcMobile): ?>
+            <img src="<?= $escaper->escapeUrl($logoSrcMobile) ?>" class="sm:hidden h-5">
+        <?php endif; ?>
+        <img class="<?= $logoSrcMobile ? 'hidden sm:block' : '' ?>"
             src="<?= $escaper->escapeUrl($logoSrc) ?>"
             alt="<?= $escaper->escapeHtmlAttr($block->getLogoAlt() ? $block->getLogoAlt() : __('Store logo')) ?>"
             <?= $logoWidth

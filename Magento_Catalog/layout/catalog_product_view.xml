@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Hyvä Themes - https://hyva.io
+ * Copyright © Hyvä Themes 2020-present. All rights reserved.
+ * This product is licensed per Magento install
+ * See https://hyva.io/license
+ */
+ -->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.main.title">
+            <arguments>
+                <argument name="css_class" xsi:type="string">md:mt-0 product text-base md:text-lg lg:text-xl xl:text-2xl font-medium text-left px-0</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="description">
+            <arguments>
+                <argument name="css_classes" xsi:type="string">prose prose-sm lg:prose-base max-w-full</argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>
